@@ -17,12 +17,12 @@ export type LinkItem = {
   /** ひとこと説明 */
   description?: string;
   category: CategoryId;
-  /** 公開・更新した時期。"2026-11" か "2026-11-06" の形 */
+  /** 公開・更新した時期。"2026-11" か "2026-11-06" の形。並び順（新しい順）に使う。画面には出さない */
   date?: string;
-  /** 使った技術など */
-  tags?: string[];
   /** ソースコードなどの補足リンク */
   repo?: string;
+  /** アイコンにする絵文字や文字（2文字まで）。なければ名前の頭文字 */
+  icon?: string;
 };
 
 export type SocialLink = {
@@ -89,6 +89,9 @@ export function validateSite(site: SiteContent): string[] {
     if (item.date !== undefined && !DATE_PATTERN.test(item.date))
       errors.push(`${where} の date は "YYYY-MM" か "YYYY-MM-DD" で書いてください: ${item.date}`);
 
+    if (item.icon !== undefined && (graphemeCount(item.icon.trim()) === 0 || graphemeCount(item.icon) > 2))
+      errors.push(`${where} の icon は1〜2文字にしてください: ${item.icon}`);
+
     const first = seen.get(item.url);
     if (first !== undefined)
       errors.push(`${where} の url が items[${first}] と重複しています: ${item.url}`);
@@ -125,7 +128,35 @@ export function groupByCategory(items: readonly LinkItem[]): CategoryGroup[] {
   })).filter((g) => g.items.length > 0);
 }
 
-/** "2026-11" → "2026.11"、"2026-11-06" → "2026.11.06" */
-export function formatDate(date: string): string {
-  return date.replaceAll("-", ".");
+/** 見た目の文字数（絵文字の組み合わせも1文字と数える） */
+export function graphemeCount(value: string): number {
+  return [...new Intl.Segmenter("ja", { granularity: "grapheme" }).segment(value)].length;
+}
+
+/** アイコンに出す文字。icon があればそれ、なければ名前の最初の1文字（英字は大文字） */
+export function iconText(item: Pick<LinkItem, "title" | "icon">): string {
+  if (item.icon?.trim()) return item.icon.trim();
+  const first = new Intl.Segmenter("ja", { granularity: "grapheme" }).segment(item.title.trim())[Symbol.iterator]().next();
+  return first.done ? "?" : first.value.segment.toUpperCase();
+}
+
+/**
+ * アイコンの背景色。白い文字が読める濃さの色から、名前で決まった1つを返す。
+ * 同じ名前なら毎回同じ色になる。
+ */
+export const ICON_COLORS = [
+  "#2563eb", // blue-600
+  "#7c3aed", // violet-600
+  "#c026d3", // fuchsia-600
+  "#dc2626", // red-600
+  "#c2410c", // orange-700
+  "#15803d", // green-700
+  "#0f766e", // teal-700
+  "#0369a1", // sky-700
+] as const;
+
+export function iconColor(seed: string): string {
+  let hash = 0;
+  for (const ch of seed) hash = (hash * 31 + ch.codePointAt(0)!) >>> 0;
+  return ICON_COLORS[hash % ICON_COLORS.length];
 }

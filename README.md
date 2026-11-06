@@ -4,7 +4,7 @@
 
 ## 内容を変える
 
-`src/content/site.ts` を編集します。`items` にリンクを1つ足すと、カテゴリ（`app` / `blog` / `portfolio`）ごとの見出しの下に新しい順で並びます。
+`src/content/site.ts` を編集します。`items` にリンクを1つ足すと、カテゴリ（`app` / `blog` / `portfolio`）ごとの見出しの下に新しい順で並びます。`app` はいちばん上に大きなボタンとして表示されます。
 
 ```ts
 {
@@ -13,8 +13,8 @@
   description: "ひとこと説明",
   category: "app",
   date: "2026-11",
-  tags: ["Next.js"],
   repo: "https://github.com/so-studnet/xxx", // 任意
+  icon: "🚀", // 任意。省略すると名前の頭文字
 },
 ```
 

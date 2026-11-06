@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
   displayHost,
-  formatDate,
+  graphemeCount,
   groupByCategory,
+  ICON_COLORS,
+  iconColor,
+  iconText,
   isHttpUrl,
   sortItems,
   validateSite,
@@ -47,7 +50,7 @@ describe("validateSite", () => {
   it("正しい内容なら空", () => {
     expect(
       validateSite(
-        site([item({ date: "2026-11", tags: ["Next.js"], repo: "https://github.com/a/b" })], {
+        site([item({ date: "2026-11", repo: "https://github.com/a/b" })], {
           socials: [{ label: "GitHub", url: "https://github.com/a" }],
         }),
       ),
@@ -72,6 +75,12 @@ describe("validateSite", () => {
     expect(errors.join("\n")).toMatch("category が不明");
     expect(errors.join("\n")).toMatch("date は");
     expect(errors.join("\n")).toMatch("repo");
+  });
+
+  it("icon は1〜2文字。絵文字の組み合わせは1文字と数える", () => {
+    expect(validateSite(site([item({ icon: "⏱️" }), item({ url: "https://example.com/2", icon: "👨‍💻" })]))).toEqual([]);
+    expect(validateSite(site([item({ icon: "abc" })]))).toEqual([expect.stringContaining("icon は")]);
+    expect(validateSite(site([item({ icon: " " })]))).toEqual([expect.stringContaining("icon は")]);
   });
 
   it("URL の重複を指摘する", () => {
@@ -111,9 +120,31 @@ describe("groupByCategory", () => {
   });
 });
 
-describe("formatDate", () => {
-  it("ハイフンをドットにする", () => {
-    expect(formatDate("2026-11")).toBe("2026.11");
-    expect(formatDate("2026-11-06")).toBe("2026.11.06");
+describe("graphemeCount", () => {
+  it("見た目の文字数を数える", () => {
+    expect(graphemeCount("ab")).toBe(2);
+    expect(graphemeCount("👨‍👩‍👧")).toBe(1);
+    expect(graphemeCount("")).toBe(0);
+  });
+});
+
+describe("iconText", () => {
+  it("icon があればそれ、なければ頭文字を大文字で", () => {
+    expect(iconText({ title: "x", icon: " 📝 " })).toBe("📝");
+    expect(iconText({ title: " what did you do" })).toBe("W");
+    expect(iconText({ title: "作業記録" })).toBe("作");
+    expect(iconText({ title: "" })).toBe("?");
+  });
+});
+
+describe("iconColor", () => {
+  it("同じ名前なら同じ色、用意した色のどれか", () => {
+    expect(iconColor("What did you do")).toBe(iconColor("What did you do"));
+    expect(ICON_COLORS).toContain(iconColor("ブログ"));
+    expect(ICON_COLORS).toContain(iconColor(""));
+  });
+  it("名前が違えば色がばらける", () => {
+    const colors = new Set(["a", "b", "c", "d", "e", "f", "g", "h"].map(iconColor));
+    expect(colors.size).toBeGreaterThan(3);
   });
 });
