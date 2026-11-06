@@ -57,7 +57,7 @@ export const site: SiteContent = {
     },
     {
       title: "toeic words",
-      url: "https://toeic-words.onrender.com",
+      url: "https://toeic-drill.onrender.com",
       description: "toeic問題対策",
       category: "app",
       date: "2026-11",
