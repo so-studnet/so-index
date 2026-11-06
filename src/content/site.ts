@@ -24,20 +24,46 @@ export const site: SiteContent = {
   items: [
     {
       title: "What did you do",
-      url: "https://example.com/what-did-you-do", // TODO: 公開している URL
+      url: "https://what-did-you-do.vercel.app",
       description: "今やっていることを記録して、時間の使い方を振り返る作業記録アプリ。",
       category: "app",
-      date: "2026-10", // TODO
+      date: "2026-11",
       repo: "https://github.com/so-studnet/what-did-you-do",
       icon: "⏱️",
     },
-    // アプリを足すときは、ここに同じ形で書き足す（icon は省略すると名前の頭文字）
     {
-      title: "次のアプリ（例）",
-      url: "https://example.com/next-app", // TODO: 実際のアプリに置き換えるか消す
-      description: "説明はカードに2行まで表示されます。",
+      title: "words quest",
+      url: "https://words-quest-nine.vercel.app",
+      description: "英辞書",
       category: "app",
+      date: "2026-11",
+      repo: "https://github.com/so-studnet/words-quest",
     },
+    {
+      title: "typing sushi",
+      url: "https://typing-sushi.onrender.com",
+      description: "英タイピング",
+      category: "app",
+      date: "2026-11",
+      repo: "https://github.com/so-studnet/typing-sushi",
+    },
+    {
+      title: "trivia battle",
+      url: "https://trivia-battle.onrender.com",
+      description: "トリビアバトル",
+      category: "app",
+      date: "2026-11",
+      repo: "https://github.com/so-studnet/trivia-battle",
+    },
+    {
+      title: "toeic words",
+      url: "https://toeic-words.onrender.com",
+      description: "toeic問題対策",
+      category: "app",
+      date: "2026-11",
+      repo: "https://github.com/so-studnet/TOEIC-words",
+    },
+
     {
       title: "ブログ（例）",
       url: "https://example.com/blog", // TODO
