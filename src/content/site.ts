@@ -49,7 +49,7 @@ export const site: SiteContent = {
     },
     {
       title: "trivia battle",
-      url: "https://trivia-battle.onrender.com",
+      url: "https://trivia-battle-derg.onrender.com",
       description: "トリビアバトル",
       category: "app",
       date: "2026-11",
