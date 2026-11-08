@@ -63,6 +63,15 @@ export const site: SiteContent = {
       date: "2026-11",
       repo: "https://github.com/so-studnet/TOEIC-words",
     },
+    {
+      title: "歴検 世界史2級",
+      url: "https://history-in-a-week.vercel.app",
+      description: "歴史能力検定 世界史2級の直前対策。834問の4択演習、全選択肢に解説つき。",
+      category: "app",
+      date: "2026-11-08",
+      repo: "https://github.com/so-studnet/history-in-a-week",
+      icon: "📜",
+    },
 
     {
       title: "ブログ（例）",
