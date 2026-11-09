@@ -50,7 +50,7 @@ export const site: SiteContent = {
     {
       title: "trivia battle",
       url: "https://trivia-battle-derg.onrender.com",
-      description: "トリビアバトル",
+      description: "トリビアバトル（自主制作の旧版）",
       category: "app",
       date: "2026-11",
       repo: "https://github.com/so-studnet/trivia-battle",
@@ -58,7 +58,7 @@ export const site: SiteContent = {
     {
       title: "trivia battle v2",
       url: "https://trivia-battle-v2.vercel.app",
-      description: "トリビアバトル（v2）",
+      description: "自主制作した trivia battle を、実用的に作り直したトリビアバトル。",
       category: "app",
       date: "2026-11-09",
       repo: "https://github.com/so-studnet/trivia-battle-v2",
