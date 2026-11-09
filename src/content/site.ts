@@ -56,6 +56,14 @@ export const site: SiteContent = {
       repo: "https://github.com/so-studnet/trivia-battle",
     },
     {
+      title: "trivia battle v2",
+      url: "https://trivia-battle-v2.vercel.app",
+      description: "トリビアバトル（v2）",
+      category: "app",
+      date: "2026-11-09",
+      repo: "https://github.com/so-studnet/trivia-battle-v2",
+    },
+    {
       title: "toeic words",
       url: "https://toeic-drill.onrender.com",
       description: "toeic問題対策",
