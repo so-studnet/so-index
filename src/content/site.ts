@@ -72,6 +72,15 @@ export const site: SiteContent = {
       repo: "https://github.com/so-studnet/TOEIC-words",
     },
     {
+      title: "ListenShorts",
+      url: "https://listen-shorts.vercel.app",
+      description: "短い英語動画（YouTube）を見て聞き取りクイズを解く、英語リスニング練習アプリ。",
+      category: "app",
+      date: "2026-11-22",
+      repo: "https://github.com/so-studnet/listen-shorts",
+      icon: "🎧",
+    },
+    {
       title: "歴検 世界史2級",
       url: "https://history-in-a-week.vercel.app",
       description: "歴史能力検定 世界史2級の直前対策。834問の4択演習、全選択肢に解説つき。",
