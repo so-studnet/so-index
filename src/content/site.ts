@@ -72,6 +72,15 @@ export const site: SiteContent = {
       repo: "https://github.com/so-studnet/TOEIC-words",
     },
     {
+      title: "MIDI Chord Viewer",
+      url: "https://midi-chord-viewer-web.vercel.app",
+      description: "MIDI キーボードで弾いた鍵盤とコード名をリアルタイムに表示し、ピアノ音源で鳴らす。PC の Chrome 向け。",
+      category: "app",
+      date: "2026-11-27",
+      repo: "https://github.com/so-studnet/midi-chord-viewer-web",
+      icon: "🎹",
+    },
+    {
       title: "ListenShorts",
       url: "https://listen-shorts.vercel.app",
       description: "短い英語動画（YouTube）を見て聞き取りクイズを解く、英語リスニング練習アプリ。",
